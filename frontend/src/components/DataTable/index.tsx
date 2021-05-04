@@ -1,4 +1,3 @@
-import ImgDsDark from 'assets/images/ds_dark.svg';
 const tam = 10;
 const DataTable = () => {
     return (
