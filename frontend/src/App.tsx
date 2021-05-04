@@ -6,7 +6,7 @@ function App() {
         </p>
         
       </header>
-    <h1>Alô!</h1>
+    <h1 className="text-primary">Alô!</h1>
     </div>
   );
 }
