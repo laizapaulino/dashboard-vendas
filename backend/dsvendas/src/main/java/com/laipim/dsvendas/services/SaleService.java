@@ -1,6 +1,8 @@
 package com.laipim.dsvendas.services;
 
 import com.laipim.dsvendas.DTO.SaleDTO;
+import com.laipim.dsvendas.DTO.SaleSuccessDTO;
+import com.laipim.dsvendas.DTO.SaleSumDTO;
 import com.laipim.dsvendas.DTO.SellerDTO;
 import com.laipim.dsvendas.entities.Sale;
 import com.laipim.dsvendas.entities.Seller;
@@ -26,7 +28,7 @@ public class SaleService {
 
 
     @Transactional(readOnly = true)//Para não travar bd
-    public Page<SaleDTO> findAll(Pageable pageable){
+    public Page<SaleDTO> findAll(Pageable pageable) {
         System.out.println("=========================");
         sellerRepository.findAll();
         Page<Sale> result = repository.findAll(pageable);
@@ -34,7 +36,17 @@ public class SaleService {
         return result.map(element -> new SaleDTO(element));
     }
 
-    public Sale findById(Long id){
+    @Transactional(readOnly = true)
+    public List<SaleSumDTO> amountGroupBySeller() {
+        return repository.amountGroupBySeller();
+    }
+
+    @Transactional(readOnly = true)
+    public List<SaleSuccessDTO> successGroupBySeller() {
+        return repository.successGroupBySeller();
+    }
+
+    public Sale findById(Long id) {
         return repository.findById(id).get();
     }
 }
